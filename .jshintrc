@@ -1,0 +1,7 @@
+{
+	"globalstrict": true,
+	"validthis": true,
+	"undef": true,
+	"unused": true,
+	"predef" : ["window", "document", "define", "module"]
+}
