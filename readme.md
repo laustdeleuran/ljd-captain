@@ -13,7 +13,7 @@ var captain = new Captain();
 Then go ahead, and log your log entries
 
 ```js
-captain.log('Captain's Log, supplemental. Our computer core has clearly been tampered with and yet there is no sign of a breach of security on board. We have engines back and will attempt to complete our mission.');
+captain.log('Captain\'s Log, supplemental. Our computer core has clearly been tampered with and yet there is no sign of a breach of security on board. We have engines back and will attempt to complete our mission.');
 // Returns: log entry Object, containing message, type and stardate
 ```
 
