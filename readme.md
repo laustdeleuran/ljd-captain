@@ -5,19 +5,25 @@ A real log. For real starship captains.
 ## Usage
 
 First, summon your captain:
-```   
+
+```js
 var captain = new Captain();
 ```
+
 Then go ahead, and log your log entries
-```   
+
+```js
 captain.log('Captain's Log, supplemental. Our computer core has clearly been tampered with and yet there is no sign of a breach of security on board. We have engines back and will attempt to complete our mission.');
 // Returns: log entry Object, containing message, type and stardate
 ```
+
 You can also get your captain to read your entire log for you, as it was entered:
-```   
+
+```js
 captain.read();
 // Outputs: Every entry in your `captain.history`
 ```
+
 You can also access your captain's log in the `captain.history` array.
 
 ## Settings
