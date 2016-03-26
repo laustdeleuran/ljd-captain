@@ -1,7 +1,7 @@
 {
   "name": "captainslog",
   "version": "0.1.0",
-  "description": "Universal log wrapper for browser development. Runs on stardates.\"",
+  "description": "Universal log wrapper for browser development. Runs on stardates.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
