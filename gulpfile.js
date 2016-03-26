@@ -8,11 +8,13 @@
  **/
 var gulp = require('gulp');
 var util = require('gulp-util');
+var browserify = require('gulp-browserify');
 var uglify = require('gulp-uglify');
 var rename = require('gulp-rename');
 var bump = require('gulp-bump');
 var jshint = require('gulp-jshint');
 var fs = require('fs');
+var del = require('del');
 
 
 
@@ -29,6 +31,9 @@ var getPackageJson = function() {
  * Settings
  */
 var source = './src/captain.js';
+var browserifySettings = {
+	standalone: 'Captain'
+};
 
 
 
@@ -57,11 +62,12 @@ gulp.task('uglify', function() {
 	var pkg = getPackageJson();
 
 	return gulp.src(source)
-    .pipe(uglify())
-    .pipe(rename(function(path) {
+		.pipe(browserify(browserifySettings))
+		.pipe(uglify())
+		.pipe(rename(function(path) {
 			path.basename += '.' + pkg.version + '.min';
 		}))
-    .pipe(gulp.dest('./dist'));
+		.pipe(gulp.dest('./dist'));
 });
 
 // Copy
@@ -69,11 +75,18 @@ gulp.task('copy', function() {
 	var pkg = getPackageJson();
 
 	return gulp.src(source)
-    .pipe(rename(function(path) {
+		.pipe(browserify(browserifySettings))
+		.pipe(gulp.dest('./examples'))
+		.pipe(rename(function(path) {
 			path.basename += '.' + pkg.version;
 		}))
-    .pipe(gulp.dest('./dist'));
+		.pipe(gulp.dest('./dist'));
 });
 
-// Build
+// Cleans the dist folder
+gulp.task('clean', function(cb) {
+	return del(['./dist', './examples/*.js'], cb);
+});
+
+// Build is default task
 gulp.task('default', ['copy', 'uglify']);

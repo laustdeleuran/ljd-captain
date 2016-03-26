@@ -1,6 +1,7 @@
 {
 	"globalstrict": true,
 	"validthis": true,
+	"browserify": true,
 	"undef": true,
 	"unused": true,
 	"predef" : ["window", "document", "define", "module"]

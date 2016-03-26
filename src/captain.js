@@ -2,6 +2,8 @@
 
 
 
+
+
 /**
  * @constant defaults
  * @desc
@@ -87,29 +89,19 @@ function logFactory(type) {
  * Constructor class. Captain is basically always a singleton (no Generations here).
  */
 function Captain(debug, name) {
-	this.name = typeof name === 'string' ? name : defaults.name;
-	this.debug = typeof debug == 'boolean' ? debug : defaults.debug;
+	this.settings = {
+		name: typeof name === 'string' ? name : defaults.name,
+		debug: typeof debug == 'boolean' ? debug : defaults.debug,
+	};
 
 	return this;
 }
 Captain.prototype.log = logFactory('log');
+Captain.prototype.debug = logFactory('debug');
 Captain.prototype.warn = logFactory('warn');
 Captain.prototype.error = logFactory('error');
-Captain.prototype.debug = logFactory('debug');
 
 
 
-// AMD support
-(function(root, name, factory) {
-	if (typeof module !== 'undefined') {
-		module.exports = factory();
-	} else if (typeof define === 'function' && define.amd) {
-		define([], factory);
-	}
-	// Fall back to a global variable
-	else {
-		root[name] = factory();
-	}
-}(this, 'captain', function() {
-	return new Captain();
-}));
+// Export
+module.exports = Captain;
