@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html class="no-js c-border">
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<meta name="msapplication-tap-highlight" content="no" />
+	<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+
+	<title>Captain.JS - Basic example</title>
+</head>
+<body class="c-border__horizontal">
+
+	<h1>Captain.JS - Basic example</h1>
+
+	<p>Please open your console to see what's outputted. You might want to <code>view-source</code> to read what's going on.</p>
+
+	<p><em>&quot;Live long and prosper&quot;</em></p>
+
+	<script type="text/javascript" src="./captain.js"></script>
+	<script type="text/javascript">
+		if (Captain) {
+			var captain = new Captain();
+
+			captain.log('Live long and prosper!');
+			captain.debug('Change is the essential process of all existence.');
+			captain.warn('It is possible to commit no mistakes and still lose. That is not a weakness. It is life.');
+			captain.error('That thought was illogical, Captain.');
+		}
+	</script>
+	
+
+
+</body>
+</html>
