@@ -144,7 +144,7 @@ Captain.prototype.error = function () {
 Captain.prototype.read = function () {
 	var args;
 	for (var i = 0; i < this.history.length; i++) {
-		args = ['Captain\'s log, star date: ', this.history[i].stardate.stardate, this.history[i].message];
+		args = ['Captain\'s log, star date: ', this.history[i].stardate.stardate, '\n', this.history[i].message];
 		if (computer[this.history[i].type]) {
 			computer[this.history[i].type].apply(this, args);
 		} else {
