@@ -2,6 +2,9 @@
 
 
 
+// Dependencies
+var StarDate = require('stardate');
+
 
 
 /**
@@ -82,6 +85,19 @@ function logFactory(type) {
 
 
 /**
+ * @constant computer
+ * @desc
+ * Private object that all captains use for logging.
+ */
+var computer = {
+	log: logFactory('log'),
+	debug: logFactory('debug'),
+	warn: logFactory('warn'),
+	error: logFactory('error')
+};
+
+
+/**
  * @class Captain
  * @param {Bool} debug
  * @param {String} name
@@ -94,12 +110,48 @@ function Captain(debug, name) {
 		debug: typeof debug == 'boolean' ? debug : defaults.debug,
 	};
 
+	this.history = [];
+
 	return this;
 }
-Captain.prototype.log = logFactory('log');
-Captain.prototype.debug = logFactory('debug');
-Captain.prototype.warn = logFactory('warn');
-Captain.prototype.error = logFactory('error');
+Captain.prototype.entry = function (type, args) {
+	if (computer[type]) {
+		computer[type].apply(this, args);
+	}
+
+	var entry = {
+		stardate: new StarDate(),
+		type: type,
+		message: args
+	};
+
+	this.history.push(entry);
+
+	return entry;
+};
+Captain.prototype.log = function () {
+	return this.entry('log', arguments);
+};
+Captain.prototype.debug = function () {
+	return this.entry('debug', arguments);
+};
+Captain.prototype.warn = function () {
+	return this.entry('warn', arguments);
+};
+Captain.prototype.error = function () {
+	return this.entry('error', arguments);
+};
+Captain.prototype.read = function () {
+	var args;
+	for (var i = 0; i < this.history.length; i++) {
+		args = ['Captain\'s log, star date: ', this.history[i].stardate.stardate, this.history[i].message];
+		if (computer[this.history[i].type]) {
+			computer[this.history[i].type].apply(this, args);
+		} else {
+			computer.log.apply(this, args);
+		}
+	}
+};
 
 
 

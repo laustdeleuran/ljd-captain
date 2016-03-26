@@ -77,6 +77,7 @@ gulp.task('copy', function() {
 	return gulp.src(source)
 		.pipe(browserify(browserifySettings))
 		.pipe(gulp.dest('./examples'))
+		.pipe(gulp.dest('./dist'))
 		.pipe(rename(function(path) {
 			path.basename += '.' + pkg.version;
 		}))
