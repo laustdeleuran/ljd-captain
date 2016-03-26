@@ -7,18 +7,6 @@ var StarDate = require('stardate');
 
 
 
-/**
- * @constant defaults
- * @desc
- * Default settings object
- */
-var defaults = {
-	name: 'James T. Kirk',
-	debug: true
-};
-
-
-
 
 /**
  * @function noop
@@ -97,6 +85,19 @@ var computer = {
 };
 
 
+
+/**
+ * @constant defaults
+ * @desc
+ * Default settings object
+ */
+var defaults = {
+	name: 'James T. Kirk',
+	debug: true
+};
+
+
+
 /**
  * @class Captain
  * @param {Bool} debug
@@ -114,8 +115,18 @@ function Captain(debug, name) {
 
 	return this;
 }
-Captain.prototype.entry = function (type, args) {
-	if (computer[type]) {
+
+/**
+ * @method Captain._entry
+ * @param {String} type
+ * @param {Array} args
+ * @param {Bool} noOutput
+ * @return {Object} entry
+ * @desc
+ * Internal helper. Enters a log entry (`args`) into the Captain log using `type`. 
+ */
+Captain.prototype._entry = function (type, args, noOutput) {
+	if (!noOutput && computer[type]) {
 		computer[type].apply(this, args);
 	}
 
@@ -129,18 +140,53 @@ Captain.prototype.entry = function (type, args) {
 
 	return entry;
 };
+
+/**
+ * @method Captain.log
+ * @return {Object} entry
+ * @desc
+ * Enters a log entry (`arguments`) into the Captain log using `log`. 
+ */
 Captain.prototype.log = function () {
-	return this.entry('log', arguments);
+	return this._entry('log', arguments);
 };
+
+/**
+ * @method Captain.debug
+ * @return {Object} entry
+ * @desc
+ * Enters a log entry (`arguments`) into the Captain log using `debug`. Only outputs if `Captain.settings.debug === true`.
+ */
 Captain.prototype.debug = function () {
-	return this.entry('debug', arguments);
+	return this._entry('debug', arguments, !this.settings.debug);
 };
+
+/**
+ * @method Captain.log
+ * @return {Object} entry
+ * @desc
+ * Enters a log entry (`arguments`) into the Captain log using `warn`. 
+ */
 Captain.prototype.warn = function () {
-	return this.entry('warn', arguments);
+	return this._entry('warn', arguments);
 };
+
+/**
+ * @method Captain.log
+ * @return {Object} entry
+ * @desc
+ * Enters a log entry (`arguments`) into the Captain log using `error`. 
+ */
 Captain.prototype.error = function () {
-	return this.entry('error', arguments);
+	return this._entry('error', arguments);
 };
+
+/**
+ * @method Captain.log
+ * @return {Object} entry
+ * @desc
+ * Outputs all log entries in `Captain.history` using `type`, showing the entered `stardate` and `message` (`arguments`).
+ */
 Captain.prototype.read = function () {
 	var args;
 	for (var i = 0; i < this.history.length; i++) {
