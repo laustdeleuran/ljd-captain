@@ -1,6 +1,6 @@
 {
   "name": "captainslog",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "Universal log wrapper for browser development. Runs on stardates.",
   "main": "index.js",
   "scripts": {
