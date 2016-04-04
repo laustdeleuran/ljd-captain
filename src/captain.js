@@ -65,7 +65,7 @@ function logFactory(type) {
 		};
 	}
 
-	return function (arg1, arg2) {
+	return function(arg1, arg2) {
 		logFn(arg1, arg2 === null ? '' : arg2);
 	};
 }
@@ -92,7 +92,7 @@ var computer = {
  * Default settings object
  */
 var defaults = {
-	name: 'James T. Kirk',
+	name: 'James T. Kirk', // The only real Captain
 	debug: true
 };
 
@@ -103,7 +103,7 @@ var defaults = {
  * @param {Bool} debug
  * @param {String} name
  * @desc
- * Constructor class. Captain is basically always a singleton (no Generations here).
+ * Constructor class.
  */
 function Captain(debug, name) {
 	this.settings = {
@@ -125,7 +125,7 @@ function Captain(debug, name) {
  * @desc
  * Internal helper. Enters a log entry (`args`) into the Captain log using `type`. 
  */
-Captain.prototype._entry = function (type, args, noOutput) {
+Captain.prototype._entry = function(type, args, noOutput) {
 	if (!noOutput && computer[type]) {
 		computer[type].apply(this, args);
 	}
@@ -147,7 +147,7 @@ Captain.prototype._entry = function (type, args, noOutput) {
  * @desc
  * Enters a log entry (`arguments`) into the Captain log using `log`. 
  */
-Captain.prototype.log = function () {
+Captain.prototype.log = function() {
 	return this._entry('log', arguments);
 };
 
@@ -157,7 +157,7 @@ Captain.prototype.log = function () {
  * @desc
  * Enters a log entry (`arguments`) into the Captain log using `debug`. Only outputs if `Captain.settings.debug === true`.
  */
-Captain.prototype.debug = function () {
+Captain.prototype.debug = function() {
 	return this._entry('debug', arguments, !this.settings.debug);
 };
 
@@ -167,7 +167,7 @@ Captain.prototype.debug = function () {
  * @desc
  * Enters a log entry (`arguments`) into the Captain log using `warn`. 
  */
-Captain.prototype.warn = function () {
+Captain.prototype.warn = function() {
 	return this._entry('warn', arguments);
 };
 
@@ -177,7 +177,7 @@ Captain.prototype.warn = function () {
  * @desc
  * Enters a log entry (`arguments`) into the Captain log using `error`. 
  */
-Captain.prototype.error = function () {
+Captain.prototype.error = function() {
 	return this._entry('error', arguments);
 };
 
@@ -187,7 +187,7 @@ Captain.prototype.error = function () {
  * @desc
  * Outputs all log entries in `Captain.history` using `type`, showing the entered `stardate` and `message` (`arguments`).
  */
-Captain.prototype.read = function () {
+Captain.prototype.read = function() {
 	var args;
 	for (var i = 0; i < this.history.length; i++) {
 		args = ['Captain\'s log, star date: ', this.history[i].stardate.stardate, '\n', this.history[i].message];
