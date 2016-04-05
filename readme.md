@@ -33,7 +33,6 @@ The *constructor* `new Captain(debug, name)` supports two settings, `debug` and 
 - `debug` - **Boolean** - If set to false, the Captain won't output debug statements. Defaults to true.
 - `name` - **String** - Set's your Captains name. Defaults to `'James T. Kirk'`.
 
-
 ## API
 
 ### Methods
@@ -54,7 +53,7 @@ Outputs a debug log with `arguments`. Returns a log entry Object containing your
 
 Outputs a warning log with `arguments`. Returns a log entry Object containing your `message` (`arguments`), `type` (`warn`) and the current `stardate` using [StarDate](https://www.npmjs.com/package/stardate).
 
-### `Captain.error()`
+#### `Captain.error()`
 
 Outputs a error log with `arguments`. Returns a log entry Object containing your `message` (`arguments`), `type` (`error`) and the current `stardate` using [StarDate](https://www.npmjs.com/package/stardate).
 
@@ -67,3 +66,7 @@ Outputs all log entries in `Captain.history` using `type`, showing the entered `
 #### `Captain.history`
 
 `Array` containing all log entries made by your Captain.
+
+---
+
+<img src="http://bkkt.ljd.dk/agreement.gif" alt="" />
