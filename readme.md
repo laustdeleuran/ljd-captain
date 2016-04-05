@@ -66,3 +66,7 @@ Outputs all log entries in `Captain.history` using `type`, showing the entered `
 #### `Captain.history`
 
 `Array` containing all log entries made by your Captain.
+
+---
+
+<img src="http://bkkt.ljd.dk/agreement.gif" alt="" />
