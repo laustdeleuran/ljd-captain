@@ -100,15 +100,14 @@ var defaults = {
 
 /**
  * @class Captain
- * @param {Bool} debug
  * @param {String} name
  * @desc
  * Constructor class.
  */
-function Captain(debug, name) {
+function Captain(name) {
 	this.settings = {
 		name: typeof name === 'string' ? name : defaults.name,
-		debug: typeof debug == 'boolean' ? debug : defaults.debug,
+		debug: defaults.debug
 	};
 
 	this.history = [];
@@ -117,16 +116,27 @@ function Captain(debug, name) {
 }
 
 /**
+ * @method Captain.toggleDebug
+ * @param {Bool} bool - truthy/falsy value to set debug mode to. If undefined, will act as a switch from the current value.
+ * @desc
+ * Toggles debug mode. If false, all debug logs won't be outputted to console. 
+ */
+Captain.prototype.toggleDebug = function(bool) {
+	this.settings.debug = bool === undefined ? !this.settings.debug : !!bool;
+	return this.settings.debug;
+}
+
+/**
  * @method Captain._entry
  * @param {String} type
  * @param {Array} args
- * @param {Bool} noOutput
+ * @param {Bool} silent
  * @return {Object} entry
  * @desc
  * Internal helper. Enters a log entry (`args`) into the Captain log using `type`. 
  */
-Captain.prototype._entry = function(type, args, noOutput) {
-	if (!noOutput && computer[type]) {
+Captain.prototype._entry = function(type, args, silent) {
+	if (!silent && computer[type]) {
 		computer[type].apply(this, args);
 	}
 
