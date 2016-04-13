@@ -28,10 +28,9 @@ You can also access your captain's log in the `captain.history` array.
 
 ## Settings
 
-The *constructor* `new Captain(debug, name)` supports two settings, `debug` and `name`:
+The *constructor* `new Captain(name)` supports one parameter: `name`, which sets your Captains name. Defaults to `'James T. Kirk'`. 
 
-- `debug` - **Boolean** - If set to false, the Captain won't output debug statements. Defaults to true.
-- `name` - **String** - Set's your Captains name. Defaults to `'James T. Kirk'`.
+Secondly, debug mode can be set in `captain.settings.debug` or controlled by using `captain.toggleDebug()`. This controls if debug level logs are outputted or not.
 
 ## API
 
@@ -47,7 +46,7 @@ Outputs a normal log with `arguments`. Returns a log entry Object containing you
 
 #### `Captain.debug()`
 
-Outputs a debug log with `arguments`. Returns a log entry Object containing your `message` (`arguments`), `type` (`debug`) and the current `stardate` using [StarDate](https://www.npmjs.com/package/stardate).
+Outputs a debug log with `arguments`. Returns a log entry Object containing your `message` (`arguments`), `type` (`debug`) and the current `stardate` using [StarDate](https://www.npmjs.com/package/stardate). Be aware that debug-level logs might not be output if `settings.debug` is set to false.
 
 #### `Captain.warn()`
 
@@ -60,6 +59,10 @@ Outputs a error log with `arguments`. Returns a log entry Object containing your
 #### `Captain.read()`
 
 Outputs all log entries in `Captain.history` using `type`, showing the entered `stardate` and `message` (`arguments`).
+
+#### `Captain.toggleDebug(bool)`
+
+This set's your Captain's behaviour - specifically whether or not debug level logs should be outputted. This method accepts one argument `bool`, the truthy/falsy value to set debug mode to. If `undefined`, the method will act as a switch from the current value.
 
 ### Properties
 
