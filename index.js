@@ -1,1 +1,1 @@
-require('./dist/captain');
+module.exports = require('./dist/captain');
