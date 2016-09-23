@@ -1,6 +1,6 @@
 {
   "name": "captainslog",
-  "version": "0.2.2",
+  "version": "0.3.0",
   "description": "Universal log wrapper for browser development. Runs on stardates.",
   "main": "index.js",
   "scripts": {
@@ -26,6 +26,9 @@
     "url": "https://github.com/laustdeleuran/ljd-captain/issues"
   },
   "homepage": "https://github.com/laustdeleuran/ljd-captain#readme",
+  "dependencies": {
+    "stardate": "0.0.4"
+  },
   "devDependencies": {
     "del": "^2.2.0",
     "fs": "0.0.2",
@@ -37,7 +40,6 @@
     "gulp-uglify": "^1.5.3",
     "gulp-util": "^3.0.7",
     "jshint": "^2.9.1",
-    "jshint-stylish": "^2.1.0",
-    "stardate": "0.0.4"
+    "jshint-stylish": "^2.1.0"
   }
 }
