@@ -61,7 +61,7 @@ var StarDate = _dereq_('stardate');
 
 /**
  * @function noop
- * @desc
+ * @desc 
  * No operation function
  */
 function noop() {
@@ -73,7 +73,7 @@ function noop() {
 /**
  * @function logWriter
  * @param {Object} arg
- * @desc
+ * @desc 
  * Formats arg if arg is an error. "Inspired" by https://github.com/angular/angular.js/blob/master/src/ng/log.js#L123
  */
 function formatError(arg) {
@@ -93,15 +93,15 @@ function formatError(arg) {
  * @function logFactory
  * @param {String} type
  * @return {Function} log
- * @desc
+ * @desc 
  * Factory function that creates single method of logging. "Inspired" by https://github.com/angular/angular.js/blob/master/src/ng/log.js#L136
  */
 function logFactory(type) {
-	var console = global.console || {},
+	var console = window.console || {},
 		logFn = console[type] || console.log || noop,
 		hasApply = false;
 
-	// Reading logFn.apply throws an error in IE11 in IE8 document mode.
+	// Reading logFn.apply throws an error in IE11 in IE8 document mode. 
 	try {
 		hasApply = !!logFn.apply;
 	} catch (e) {}
@@ -170,7 +170,7 @@ function Captain(name) {
  * @method Captain.toggleDebug
  * @param {Bool} bool - truthy/falsy value to set debug mode to. If undefined, will act as a switch from the current value.
  * @desc
- * Toggles debug mode. If false, all debug logs won't be outputted to console.
+ * Toggles debug mode. If false, all debug logs won't be outputted to console. 
  */
 Captain.prototype.toggleDebug = function(bool) {
 	this.settings.debug = bool === undefined ? !this.settings.debug : !!bool;
@@ -184,7 +184,7 @@ Captain.prototype.toggleDebug = function(bool) {
  * @param {Bool} silent
  * @return {Object} entry
  * @desc
- * Internal helper. Enters a log entry (`args`) into the Captain log using `type`.
+ * Internal helper. Enters a log entry (`args`) into the Captain log using `type`. 
  */
 Captain.prototype._entry = function(type, args, silent) {
 	if (!silent && computer[type]) {
@@ -206,7 +206,7 @@ Captain.prototype._entry = function(type, args, silent) {
  * @method Captain.log
  * @return {Object} entry
  * @desc
- * Enters a log entry (`arguments`) into the Captain log using `log`.
+ * Enters a log entry (`arguments`) into the Captain log using `log`. 
  */
 Captain.prototype.log = function() {
 	return this._entry('log', arguments);
@@ -226,7 +226,7 @@ Captain.prototype.debug = function() {
  * @method Captain.log
  * @return {Object} entry
  * @desc
- * Enters a log entry (`arguments`) into the Captain log using `warn`.
+ * Enters a log entry (`arguments`) into the Captain log using `warn`. 
  */
 Captain.prototype.warn = function() {
 	return this._entry('warn', arguments);
@@ -236,7 +236,7 @@ Captain.prototype.warn = function() {
  * @method Captain.log
  * @return {Object} entry
  * @desc
- * Enters a log entry (`arguments`) into the Captain log using `error`.
+ * Enters a log entry (`arguments`) into the Captain log using `error`. 
  */
 Captain.prototype.error = function() {
 	return this._entry('error', arguments);
